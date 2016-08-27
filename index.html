@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script src="js\lib\jquery-3.1.0.js"></script>
+    <script src="js\lib\underscore.js"></script>
+    <script src="js\lib\backbone.js"></script>
+    <script>
+        // Your code goes here
+        var Todo = Backbone.Model.extend({});
+        var todo1 = new Todo();
+        console.log(JSON.stringify(todo1));
+
+        var todo2 = new Todo({
+            title:'Check the attributes of both model instances',
+            completed: true
+        })
+        console.log(JSON.stringify(todo2));
+
+    </script>
+</body>
+
+</html>
