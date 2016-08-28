@@ -7,12 +7,13 @@
 </head>
 
 <body>
+    <div id="footer"></div>
     <script src="js\lib\jquery-3.1.0.js"></script>
     <script src="js\lib\underscore.js"></script>
     <script src="js\lib\backbone.js"></script>
     <script>
         // Your code goes here
-        var Todo = Backbone.Model.extend({});
+/*        var Todo = Backbone.Model.extend({});
         var todo1 = new Todo();
         console.log(JSON.stringify(todo1));
 
@@ -20,8 +21,69 @@
             title:'Check the attributes of both model instances',
             completed: true
         })
-        console.log(JSON.stringify(todo2));
+        console.log(JSON.stringify(todo2));*/
+        
+        var Todo = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                completed: false
+            }
+            
+        })
+        
+        var todo1 = new Todo();
+        console.log(todo1.get('title'));
+        console.log(todo1.get('completed'));
+        
+        todo1.set({title:'attributes are set'})
+        var HomeView = Backbone.View.extend({
+            tagName: "div",
+            id: "home-view",
+            initialize: function(){
+                $("body").html(this.el);
+                this.dis();
+            },
+            dis: function(){
+                this.$el.html("<h1>This is the home page</h1><a href='#users'>Go to Users</a>");
+                alert('homeview rendered');
+            }
+        });
+        
+        var TodoRouter = Backbone.Router.extend({
+            routes:{
+               "about" : "showAbout",
+               "todo/:id" : "getTodo",
+               "homepage":"homePage"
+                
+            },
+            showAbout:function(){
+                alert("showabout called");
+            },
+            getTodo: function(id){
+                alert("you are trying to reach todo "+id);
+            },
+            homePage: function(){
+                var homeViewIns = new HomeView();
+            }
+        });
+        var myTodoRouter = new TodoRouter();
+        alert("rouer init");
+        Backbone.history.start();
+        
+        var TodosView = Backbone.View.extend({
+            tagName: 'ul',
+            className: 'container',
+            id: 'todos'
+            
+        })
+        var todosView1 = new TodosView();
+        console.log(todosView1.el);
+        
+        var todosView = new TodosView({el:$('#footer')});
+        
+        
 
+        console.log(todosView.el);
     </script>
 </body>
 
