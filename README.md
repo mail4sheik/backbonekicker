@@ -15,3 +15,7 @@ Model
 Collection
 
 Data source
+
+http://mikeygee.com/blog/backbone.html
+
+https://github.com/addyosmani/backbone-fundamentals
